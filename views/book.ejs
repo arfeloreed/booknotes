@@ -1,0 +1,86 @@
+<%- include('partials/header') %>
+
+  <div id="books-head-con" class="container">
+    <h1>Reed's Booknotes</h1>
+    <p class="book-description">See the collection of all the books I've read. The notes are personal and solely depends
+      based on my interpretation of what I've read. They are not meant to be taken for
+      educational purposes. I will continue to update this page as I read more. Book covers
+      are from the <a class="link" href="https://openlibrary.org/" target="_blank">openlibrary.org</a>.
+    </p>
+  </div>
+
+  <div id="filters-con" class="container">
+    <p class="h6">Filter by:</p>
+    <form id="filter-buttons" action="/books/filter" method="post">
+      <input type="submit" value="newest" name="newest" id="newest">
+      <label class="filter-btn" for="newest">Newest</label>
+      <input type="submit" value="title" name="title" id="title">
+      <label class="filter-btn" for="title">Title</label>
+      <input type="submit" value="rating" name="rating" id="rating">
+      <label class="filter-btn" for="rating">Rating</label>
+    </form>
+  </div>
+
+  <div id="books-con" class="container">
+    <% if (books) { %>
+      <% books.forEach(book => { %>
+        <div class="two-col book-con">
+          <div class="col-left">
+            <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" alt="">
+          </div>
+
+          <div class="col-right">
+            <h2><%= book.title %></h2>
+            <div>
+              <p>by <%= book.author %></p>
+              <p>Rating: <%= book.rating %> ⭐</p>
+            </div>
+            <p class="book-description"><%= book.description %></p>
+            <a class="btn" href="/books/<%= book.id %>">Read Notes</a>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p>There no books listed on your collection.</p>
+    <% } %>
+  </div>
+
+  <% if (isDaks) { %>
+    <form action="/books" id="add-book-form" method="post">
+      <h3>Add a book</h3>
+
+      <div class="input-box">
+        <input type="text" name="title" id="title" required autocomplete="off">
+        <label for="title">Title</label>
+      </div>
+
+      <div class="input-box">
+        <input type="text" name="author" id="author" required autocomplete="off">
+        <label for="author">Author</label>
+      </div>
+
+      <div class="input-box">
+        <input type="text" name="isbn" id="isbn" required autocomplete="off">
+        <label for="isbn">ISBN</label>
+      </div>
+
+      <div class="input-box2">
+        <label for="rating">Rating</label>
+        <input type="number" name="rating" id="rating" min="1" max="10" step="0.1" required>
+      </div>
+
+      <div class="input-box2">
+        <label for="date">Date read</label>
+        <input type="date" name="date" id="date" required>
+      </div>
+
+      <div class="input-box2">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" rows="6" required></textarea>
+      </div>
+
+      <input type="submit" value="Submit" class="btn">
+    </form>
+  <% } %>
+
+<%- include('partials/footer') %>

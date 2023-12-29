@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+
+<main class="auth-main">
+  <p class="h2">Register</p>
+
+  <form action="/admin/register" method="post" id="register-form">
+    <div class="input-box">
+      <input type="text" name="username" id="username" required autocomplete="off" autofocus>
+      <label for="username">Username:</label>
+    </div>
+
+    <div class="input-box">
+      <input type="password" name="password" id="password" required>
+      <label for="password">Password:</label>
+    </div>
+
+    <div class="input-box">
+      <input type="password" name="password2" id="password2" required>
+      <label for="password2">Confirm password:</label>
+    </div>
+
+    <div class="submit-box">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <input type="submit" value="Register">
+    </div>
+  </form>
+</main>
+
+<%- include('partials/footer') %>

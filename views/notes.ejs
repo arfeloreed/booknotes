@@ -1,0 +1,42 @@
+<%- include('partials/header') %>
+
+  <div id="notes-head" class="container">
+    <h1>Reed's Booknotes</h1>
+
+    <div class="two-col">
+      <div class="col-left">
+        <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" alt="">
+      </div>
+      <div class="col-right">
+        <h2><%= book.title %></h2>
+        <p>By <%= book.author %></p>
+        <p>ISBN: <%= book.isbn %></p>
+        <p>Read on: <%= book.date_read.toDateString() %></p>
+        <p>My Rating: <%= book.rating %>/10 ⭐</p>
+        <p class="book-description"><%= book.description %></p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container">
+    <h3 class="h4">My Notes:</h3>
+    <div id="notes-con">
+      <% notes.forEach(note => { %>
+        <p class="note"><%= note.note %></p>
+      <% }) %>
+    </div>
+
+    <% if (isDaks) { %>
+      <div id="add-note-con">
+        <p class="h5">Add a note:</p>
+
+        <form action="/books/<%= book.id %>" method="post">
+          <textarea name="note" id="note" rows="5" required></textarea>
+          <button type="submit" class="btn">Submit</button>
+        </form>
+      </div>
+    <% } %>
+  </div>
+
+<%- include('partials/footer') %>

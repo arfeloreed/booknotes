@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booknotes</title>
+
+  <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+  <header class="nav-con">
+    <nav class="navbar container">
+      <div class="nav-brand">
+        Booknotes
+      </div>
+      <div class="nav-items">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/books">Books</a>
+        <% if (isDaks) { %>
+          <a class="nav-link" href="/admin/logout">Logout</a>
+        <% } %>
+      </div>
+
+      <div id="menu-toggle">
+        <input type="checkbox" name="toggle" id="toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <nav id="menu">
+    <div class="menu-items">
+      <a class="menu-link" href="/">Home</a>
+      <a class="menu-link" href="/books">Books</a>
+      <% if (isDaks) { %>
+        <a href="/admin/logout">Logout</a>
+      <% } %>
+    </div>
+  </nav>
