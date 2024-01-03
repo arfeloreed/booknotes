@@ -14,8 +14,6 @@ const toggleBox = document.querySelector("#toggle");
 const menu = document.querySelector("#menu");
 
 toggleBox.addEventListener("change", () => {
-  setTimeout(() => {
-    if (toggleBox.checked) menu.style.display = "block";
-    else menu.style.display = "none";
-  }, 100);
+  if (toggleBox.checked) menu.classList.add("toggle-menu");
+  else menu.classList.remove("toggle-menu");
 });

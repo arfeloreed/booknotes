@@ -38,7 +38,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* border: 1px solid red; */
 }
 
 html,
@@ -96,9 +95,8 @@ p {
 }
 
 /* customize setup */
-.active {
-  background-color: var(--bg-primary);
-  color: var(--text-color-dk);
+.toggle-menu {
+  transform: translateY(240px);
 }
 
 /* buttons */
@@ -224,13 +222,18 @@ button.btn {
 #menu {
   background-color: var(--bg-secondary);
   padding: 20px 0;
-  display: none;
-  transition: display 5s ease;
+  position: absolute;
+  width: 100%;
+  top: -180px;
+  left: 0;
+  z-index: 3;
+  transition: transform 0.5s ease;
 }
 .menu-items {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
 }
 .menu-link {
   text-decoration: none;
@@ -393,6 +396,9 @@ button.btn {
 }
 #notes-head > h1 {
   margin-bottom: 50px;
+}
+#notes-head .two-col {
+  column-gap: 15px;
 }
 #notes-head .col-left {
   width: 30%;
@@ -616,11 +622,110 @@ h3.h4 {
 }
 
 /* responsiveness */
+@media screen and (max-width: 1044px) {
+  /* books page */
+  #books-con .book-con {
+    flex-direction: column;
+    align-items: center;
+  }
+  #books-con .col-right {
+    margin-top: 20px;
+  }
+}
+@media screen and (max-width: 876px) {
+  /* notes page */
+  #notes-head .two-col {
+    flex-direction: column;
+    align-items: center;
+  }
+  #notes-head .col-right {
+    margin-top: 30px;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* home page */
+  #hero > .two-col {
+    margin-top: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #hero .col-left {
+    width: 80%;
+  }
+  #hero .col-right {
+    display: none;
+  }
+  /* books page */
+  #books-head-con {
+    margin-top: 50px;
+  }
+  #books-head-con h1 {
+    font-size: 3rem;
+  }
+  #books-con h2 {
+    font-size: 2.5rem;
+  }
+  /* notes page */
+  #notes-head {
+    margin-top: 50px;
+  }
+  #notes-head .book-description {
+    width: 100%;
+  }
+  h3.h4 {
+    padding-left: 0;
+  }
+}
 @media screen and (max-width: 576px) {
+  /* home page */
   .nav-items {
     display: none;
   }
   #menu-toggle {
     display: flex;
+  }
+  /* books page */
+  #books-head-con .book-description {
+    width: 100%;
+  }
+  #books-con .col-right,
+  #books-con .book-description {
+    width: 100%;
+  }
+  /* notes page */
+  #notes-head .col-right {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 468px) {
+  /* home page */
+  #hero .h3 {
+    font-size: 2rem;
+  }
+  #hero h1 {
+    font-size: 3rem;
+    margin: 20px 0;
+  }
+  #hero-description {
+    width: 100%;
+  }
+  /* notes page */
+  #notes-head h1 {
+    font-size: 3rem;
+  }
+  #notes-head h2 {
+    font-size: 2.3rem;
+  }
+}
+@media screen and (max-width: 376px) {
+  /* home page */
+  #hero .col-left {
+    width: 100%;
+  }
+  #hero .h3 {
+    font-size: 1.8rem;
+  }
+  #hero h1 {
+    font-size: 2.8rem;
   }
 }

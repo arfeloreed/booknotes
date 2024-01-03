@@ -226,7 +226,9 @@ app.post("/books/:id/", async (req, res) => {
 /* admin user setup */
 app.get("/admin/register/", (req, res) => {
   try {
-    res.render("register");
+    res.render("register", {
+      isDaks: req.isAuthenticated(),
+    });
   } catch (err) {
     console.error("Can't render register.", err);
     res.status(500).send("Internal server error.");
@@ -264,7 +266,9 @@ app.post("/admin/register/", async (req, res) => {
 
 app.get("/admin/login/", (req, res) => {
   try {
-    res.render("login");
+    res.render("login", {
+      isDaks: req.isAuthenticated(),
+    });
   } catch (err) {
     console.error("Can't render login.", err);
     res.status(500).send("Internal Server error.");
