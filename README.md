@@ -29,6 +29,10 @@ A web app for note taking of all the important points to remember in all of the 
 
 ### *How to use*
 In the CLI of your folder location, enter:
-```
+```bash
 npm i
+
+# then
+
+npm start
 ```

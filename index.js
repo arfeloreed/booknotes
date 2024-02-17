@@ -9,7 +9,7 @@ import "dotenv/config";
 
 // variables
 const app = express();
-const port = 3000;
+const port = process.env.SERVER_PORT || 3000;
 
 // db setup
 const db = new pg.Client({
