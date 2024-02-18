@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import pg from "pg";
 import bcrypt from "bcrypt";
 import session from "express-session";
+import MemoryStore from "memorystore";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import "dotenv/config";
@@ -29,7 +30,9 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 86400000 },
+    store: new MemoryStore({ checkPeriod: 86400000 }),
   })
 );
 app.use(passport.initialize());
