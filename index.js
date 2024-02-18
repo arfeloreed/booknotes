@@ -3,7 +3,8 @@ import bodyParser from "body-parser";
 import pg from "pg";
 import bcrypt from "bcrypt";
 import session from "express-session";
-import MemoryStore from "memorystore";
+import { createClient } from "redis";
+import RedisStore from "connect-redis";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import "dotenv/config";
@@ -11,6 +12,7 @@ import "dotenv/config";
 // variables
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
+let redisClient = createClient();
 
 // db setup
 const db = new pg.Client({
@@ -30,9 +32,11 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 86400000 },
-    store: new MemoryStore({ checkPeriod: 86400000 }),
+    saveUninitialized: false,
+    cookie: { maxAge: 86400000, secure: true },
+    store: new RedisStore({
+      client: redisClient,
+    }),
   })
 );
 app.use(passport.initialize());
