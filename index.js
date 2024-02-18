@@ -13,6 +13,9 @@ import "dotenv/config";
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
 let redisClient = createClient();
+(async () => {
+  await redisClient.connect();
+})();
 
 // db setup
 const db = new pg.Client({
