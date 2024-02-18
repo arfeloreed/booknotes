@@ -12,7 +12,7 @@ import "dotenv/config";
 // variables
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
-let redisClient = createClient();
+const redisClient = createClient();
 redisClient.connect().catch(console.error);
 
 // db setup
@@ -34,7 +34,6 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 86400000, secure: true },
     store: new RedisStore({
       client: redisClient,
     }),
