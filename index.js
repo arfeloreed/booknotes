@@ -3,8 +3,6 @@ import bodyParser from "body-parser";
 import pg from "pg";
 import bcrypt from "bcrypt";
 import session from "express-session";
-import { createClient } from "redis";
-import RedisStore from "connect-redis";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import "dotenv/config";
@@ -12,8 +10,6 @@ import "dotenv/config";
 // variables
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
-const redisClient = createClient();
-redisClient.connect().catch(console.error);
 
 // db setup
 const db = new pg.Client({
@@ -34,9 +30,6 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: new RedisStore({
-      client: redisClient,
-    }),
   })
 );
 app.use(passport.initialize());
